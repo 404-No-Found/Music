@@ -1,24 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout android:layout_width="match_parent"
+<android.support.v4.widget.DrawerLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.design.widget.CollapsingToolbarLayout
-        android:id="@+id/collapsing_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:fitsSystemWindows="true"
-        app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleMarginEnd="64dp"
-        app:expandedTitleMarginStart="48dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:collapsedTitleGravity="left">
-        <include layout="@layout/fragment_home"/>
-    </android.support.design.widget.CollapsingToolbarLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/my_drawer_layout">
     <FrameLayout
+        android:id="@+id/fl_all"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent">
+        <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.12">
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:collapsedTitleGravity="left">
+                <include layout="@layout/fragment_home"/>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </FrameLayout>
+        <FrameLayout
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/fl_instead"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/rGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:layout_marginTop="3dp"
+                    android:drawableTop="@drawable/tab_list"
+                    style="@style/tab_menu_item"
+                    android:id="@+id/list"
+                    android:text="播放列表"
+                    android:layout_weight="0.5"
+                    />
+
+                <RadioButton
+                    android:checked="true"
+                    android:drawableTop="@drawable/tab_music"
+                    style="@style/tab_menu_item"
+                    android:id="@+id/start"
+                    android:layout_weight="1"
+                    android:text="播放模式" />
+                <RadioButton
+                    android:drawableTop="@drawable/tab_find"
+                    style="@style/tab_menu_item"
+                    android:id="@+id/more"
+                    android:text="更多"
+                    android:layout_weight="0.5"/>
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+    </FrameLayout>
     <android.support.design.widget.NavigationView
         android:layout_gravity="start"
         android:layout_width="wrap_content"
@@ -27,41 +81,4 @@
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/my_menu"
         />
-    <RadioGroup
-        android:id="@+id/rGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <RadioButton
-        android:layout_gravity="bottom"
-        android:id="@+id/list"
-        android:button="@null"
-        android:text="音乐列表"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:gravity="center"/>
-
-    <RadioButton
-        android:layout_gravity="bottom"
-        android:id="@+id/start"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:button="@null"
-        android:gravity="center"
-        android:text="开始播放" />
-    <RadioButton
-        android:layout_gravity="bottom"
-        android:id="@+id/more"
-        android:gravity="center"
-        android:button="@null"
-        android:text="更多"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="40dp" />
-    </RadioGroup>
-
-
-
 </android.support.v4.widget.DrawerLayout>
